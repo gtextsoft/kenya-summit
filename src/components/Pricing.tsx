@@ -2,7 +2,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Home, Users, Building2, ArrowRight } from "lucide-react";
+import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Copy, Check } from "lucide-react";
+import { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 const individualPackages = [
   {
@@ -44,8 +46,30 @@ const individualPackages = [
 ];
 
 const Pricing = () => {
+  const [isCopied, setIsCopied] = useState(false);
+  const couponCode = "SAVE50";
+
   const handlePaymentClick = () => {
     window.open('https://app.mailingboss.com/lists/685bc4caa031e/subscribe', '_blank');
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(couponCode);
+      setIsCopied(true);
+      toast({
+        title: "Copied!",
+        description: `Coupon code ${couponCode} copied to clipboard`,
+        duration: 2000,
+      });
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try copying the code manually",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -59,6 +83,48 @@ const Pricing = () => {
             Choose the package that best fits your needs. All packages include visa processing, 
             tickets, full event access, and guided tours of Kenya's most iconic destinations.
           </p>
+        </div>
+
+        {/* Special Offer Section */}
+        <div className="max-w-4xl mx-auto mb-16 transform hover:scale-105 transition-transform duration-300">
+          <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 p-1 rounded-2xl animate-pulse">
+            <div className="bg-white rounded-xl p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <Sparkles className="h-8 w-8 text-amber-500 animate-bounce" />
+                  <div className="text-left">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                      🔥 Special Offer!
+                    </h3>
+                    <div className="flex items-center gap-2 mt-2">
+                      <p className="text-lg md:text-xl text-gray-700">
+                        Use code <span className="font-mono font-bold text-amber-600 bg-amber-100 px-2 py-1 rounded">{couponCode}</span>
+                      </p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        onClick={copyToClipboard}
+                      >
+                        {isCopied ? (
+                          <Check className="h-4 w-4 text-green-500" />
+                        ) : (
+                          <Copy className="h-4 w-4 text-gray-500 hover:text-amber-600" />
+                        )}
+                        <span className="sr-only">Copy coupon code</span>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center md:text-right">
+                  <div className="text-2xl md:text-3xl font-bold text-amber-600">
+                    50% OFF
+                  </div>
+                  <p className="text-gray-600 mt-1">Limited time offer!</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Individual Packages */}
