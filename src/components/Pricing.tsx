@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Copy, Check } from "lucide-react";
+import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Timer } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
@@ -94,33 +94,29 @@ const Pricing = () => {
                   <Sparkles className="h-8 w-8 text-amber-500 animate-bounce" />
                   <div className="text-left">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
-                      🔥 Special Offer!
+                      🔥 Flash Sale!
                     </h3>
-                    <div className="flex items-center gap-2 mt-2">
-                      <p className="text-lg md:text-xl text-gray-700">
-                        Use code <span className="font-mono font-bold text-amber-600 bg-amber-100 px-2 py-1 rounded">{couponCode}</span>
+                    <div className="mt-2 space-y-1">
+                      <p className="text-lg md:text-xl text-gray-700 flex items-center gap-2">
+                        <span className="line-through text-gray-400">Original Price</span>
+                        <span className="bg-red-100 text-red-600 px-2 py-1 rounded-full text-sm font-semibold">-50% OFF</span>
                       </p>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        onClick={copyToClipboard}
-                      >
-                        {isCopied ? (
-                          <Check className="h-4 w-4 text-green-500" />
-                        ) : (
-                          <Copy className="h-4 w-4 text-gray-500 hover:text-amber-600" />
-                        )}
-                        <span className="sr-only">Copy coupon code</span>
-                      </Button>
+                      <p className="text-sm text-gray-600">
+                        Discount automatically applied at checkout
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="text-center md:text-right">
-                  <div className="text-2xl md:text-3xl font-bold text-amber-600">
-                    50% OFF
+                <div className="text-center md:text-right flex items-center gap-3">
+                  <Timer className="h-5 w-5 text-amber-600 animate-pulse" />
+                  <div>
+                    <div className="text-2xl md:text-3xl font-bold text-amber-600">
+                      Limited Time Only
+                    </div>
+                    <p className="text-gray-600 mt-1">
+                      Book now before prices increase!
+                    </p>
                   </div>
-                  <p className="text-gray-600 mt-1">Limited time offer!</p>
                 </div>
               </div>
             </div>
