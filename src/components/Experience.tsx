@@ -7,25 +7,26 @@ const experiences = [
     icon: MapPin,
     title: "Nairobi's Innovation Hubs",
     description: "Explore the vibrant cultural spots and innovation centers of Kenya's capital",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "/images/video.mp4",
+    isVideo: true
   },
   {
     icon: Camera,
     title: "Maasai Mara Game Reserve",
     description: "Home to the Big Five and some of the most scenic wildlife experiences on the continent",
-    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "/images/ken.avif"
   },
   {
     icon: Users,
     title: "Safari Adventures",
     description: "Immersive wildlife experiences and cultural connections with local communities",
-    image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "/images/youngafrikanna.jpg"
   },
   {
     icon: Heart,
     title: "Nature Reset Experiences",
     description: "Guided moments of reflection and renewal in Africa's most breathtaking landscapes",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "/images/pexels.jpg"
   }
 ];
 
@@ -41,21 +42,35 @@ const Experience = () => {
             Explore the beauty of Kenya with curated tours and experiences designed to inspire and rejuvenate.
           </p>
           <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-6 rounded-xl max-w-2xl mx-auto">
-            <p className="text-lg font-medium">
+            <p className="text-2xl md:text-3xl font-bold leading-relaxed">
               Because great ideas aren't born in burnout, they come alive in inspiration.
             </p>
           </div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Experience Cards */}
+        {/* <div className="grid md:grid-cols-2 gap-8">
           {experiences.map((experience, index) => (
             <Card key={index} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={experience.image} 
-                  alt={experience.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                {experience.isVideo ? (
+                  <video 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                  >
+                    <source src={experience.image} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img 
+                    src={experience.image} 
+                    alt={experience.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center">
@@ -73,7 +88,7 @@ const Experience = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </div> */}
         
         <div className="mt-16 text-center">
           <div className="max-w-4xl mx-auto">

@@ -5,8 +5,12 @@ import Hero from "@/components/Hero";
 import WhyAttend from "@/components/WhyAttend";
 import Topics from "@/components/Topics";
 import Experience from "@/components/Experience";
+import Team from "@/components/Team";
+import Gallery from "@/components/Gallery";
+import KenyaFlag from "@/components/KenyaFlag";
 import Pricing from "@/components/Pricing";
 import CallToAction from "@/components/CallToAction";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -15,8 +19,12 @@ const Index = () => {
       <WhyAttend />
       <Topics />
       <Experience />
+      <Team />
+      <Gallery />
+      <KenyaFlag />
       <Pricing />
       <CallToAction />
+      <Footer />
     </div>
   );
 };

@@ -70,33 +70,33 @@ const badgeColors = {
 
 const Topics = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
             Topics We'll Cover
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
             Each session is designed to be practical, engaging, and radically transformative. 
             You won't just learn, you'll evolve.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {topics.map((topic, index) => (
             <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:scale-105">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between gap-4">
-                  <CardTitle className="text-lg font-bold text-gray-900 leading-tight">
+              <CardHeader className="pb-2 sm:pb-3 p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
+                  <CardTitle className="text-base sm:text-lg font-bold text-gray-900 leading-tight">
                     {topic.title}
                   </CardTitle>
-                  <Badge className={`${badgeColors[topic.badge as keyof typeof badgeColors]} font-medium whitespace-nowrap`}>
+                  <Badge className={`${badgeColors[topic.badge as keyof typeof badgeColors]} font-medium whitespace-nowrap text-xs sm:text-sm w-fit`}>
                     {topic.badge}
                   </Badge>
                 </div>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 leading-relaxed">
+              <CardContent className="p-4 sm:p-6 pt-0">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   {topic.description}
                 </p>
               </CardContent>

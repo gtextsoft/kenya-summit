@@ -73,20 +73,20 @@ const Pricing = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-amber-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-amber-50">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
             Investment Options
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
             Choose the package that best fits your needs. All packages include visa processing, 
             tickets, full event access, and guided tours of Kenya's most iconic destinations.
           </p>
         </div>
 
         {/* Special Offer Section */}
-        <div className="max-w-4xl mx-auto mb-16 transform hover:scale-105 transition-transform duration-300">
+        {/* <div className="max-w-4xl mx-auto mb-16 transform hover:scale-105 transition-transform duration-300">
           <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 p-1 rounded-2xl animate-pulse">
             <div className="bg-white rounded-xl p-6 md:p-8">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -121,43 +121,43 @@ const Pricing = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Individual Packages */}
-        <div className="mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
+        <div className="mb-12 sm:mb-16">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6 sm:mb-8 px-2">
             Economy Class for Individuals
           </h3>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
             {individualPackages.map((pkg, index) => (
               <Card key={index} className={`relative group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:scale-105 ${pkg.popular ? 'ring-2 ring-amber-500' : ''}`}>
                 {pkg.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-4 py-1">
+                  <Badge className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-3 py-1 text-xs sm:text-sm">
                     Most Popular
                   </Badge>
                 )}
-                <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <pkg.icon className="h-8 w-8 text-white" />
+                <CardHeader className="text-center pb-3 sm:pb-4 p-4 sm:p-6">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                    <pkg.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-bold text-gray-900">
+                  <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
                     {pkg.title}
                   </CardTitle>
-                  <div className="text-3xl font-bold text-amber-600 mt-2">
+                  <div className="text-2xl sm:text-3xl font-bold text-amber-600 mt-2">
                     {pkg.price}
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
+                <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6">
+                  <div className="space-y-2 sm:space-y-3">
                     {pkg.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                        <span className="text-gray-600">{feature}</span>
+                      <div key={featureIndex} className="flex items-center gap-2 sm:gap-3">
+                        <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-sm sm:text-base text-gray-600">{feature}</span>
                       </div>
                     ))}
                   </div>
                   <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white mt-6"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white mt-4 sm:mt-6 text-sm sm:text-base"
                     onClick={handlePaymentClick}
                   >
                     Select Package

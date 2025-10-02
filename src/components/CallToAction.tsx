@@ -4,7 +4,7 @@ import { Calendar, MapPin, Users, ArrowRight, Clock } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-amber-600 via-orange-600 to-red-600 text-white relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-amber-600 via-orange-600 to-red-600 text-white relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -12,35 +12,35 @@ const CallToAction = () => {
         }} />
       </div>
       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+          <div className="space-y-4 sm:space-y-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight px-2">
               Ready to Transform Your Leadership?
             </h2>
-            <p className="text-xl md:text-2xl text-amber-100 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-amber-100 leading-relaxed px-2">
               Join us in Kenya for an unprecedented blend of business growth, 
               team alignment, and soul-stirring adventure.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 space-y-3">
-              <Calendar className="h-8 w-8 text-amber-300 mx-auto" />
-              <h3 className="font-bold text-lg">When</h3>
-              <p className="text-amber-100">September 24-29, 2025</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-3xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 space-y-2 sm:space-y-3">
+              <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-amber-300 mx-auto" />
+              <h3 className="font-bold text-base sm:text-lg">When</h3>
+              <p className="text-amber-100 text-sm sm:text-base">November 23-28, 2025</p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 space-y-3">
-              <MapPin className="h-8 w-8 text-amber-300 mx-auto" />
-              <h3 className="font-bold text-lg">Where</h3>
-              <p className="text-amber-100">Kenya, Africa</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 space-y-2 sm:space-y-3">
+              <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-amber-300 mx-auto" />
+              <h3 className="font-bold text-base sm:text-lg">Where</h3>
+              <p className="text-amber-100 text-sm sm:text-base">Kenya, Africa</p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 space-y-3">
-              <Users className="h-8 w-8 text-amber-300 mx-auto" />
-              <h3 className="font-bold text-lg">Spots</h3>
-              <p className="text-amber-100">Only 50 Available</p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 space-y-2 sm:space-y-3">
+              <Users className="h-6 w-6 sm:h-8 sm:w-8 text-amber-300 mx-auto" />
+              <h3 className="font-bold text-base sm:text-lg">Spots</h3>
+              <p className="text-amber-100 text-sm sm:text-base">Only 50 Available</p>
             </div>
           </div>
           
