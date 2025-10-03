@@ -6,44 +6,17 @@ import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Timer } from
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
-const individualPackages = [
-  {
-    title: "Premium Studio",
-    price: "₦3,500,000",
-    accommodation: "Studio apartment accommodation",
-    icon: Building2,
-    popular: false,
-    features: [
-      "Visa and Ticket",
-      "Event & Tour",
-      "Studio apartment accommodation"
-    ]
-  },
-  {
-    title: "Single Comfort",
-    price: "₦3,500,000", 
-    accommodation: "Single accommodation",
-    icon: Home,
-    popular: true,
-    features: [
-      "Visa and Ticket",
-      "Event & Tour", 
-      "Single accommodation"
-    ]
-  },
-  {
-    title: "Shared Value",
-    price: "₦3,500,000",
-    accommodation: "Shared apartment (2) accommodation", 
-    icon: Users,
-    popular: false,
-    features: [
-      "Visa and Ticket",
-      "Event & Tour",
-      "Shared apartment (2) accommodation"
-    ]
-  }
-];
+const singlePackage = {
+  title: "Single Package",
+  price: "₦3,500,000",
+  icon: Home,
+  popular: true,
+  features: [
+    "Visa and Ticket",
+    "Event & Tour",
+    "Accommodation"
+  ]
+};
 
 const Pricing = () => {
   const [isCopied, setIsCopied] = useState(false);
@@ -73,13 +46,13 @@ const Pricing = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-amber-50">
+    <section className="py-12 sm:py-16 bg-gradient-to-b from-white to-amber-50">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Investment Options
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Choose the package that best fits your needs. All packages include visa processing, 
             tickets, full event access, and guided tours of Kenya's most iconic destinations.
           </p>
@@ -126,68 +99,62 @@ const Pricing = () => {
         {/* Special Discount Notice */}
         <div className="max-w-4xl mx-auto mb-8">
           <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-6 text-center text-white">
-            <h3 className="text-2xl md:text-3xl font-bold mb-2">🎉 Special Discount Price!</h3>
-            <p className="text-lg text-green-100">All individual packages now at ₦3,500,000 - Limited time offer!</p>
+            <h3 className="text-2xl font-bold mb-2">🎉 Special Discount Price!</h3>
+            <p className="text-lg text-green-100">Single package now at ₦3,500,000 - Limited time offer!</p>
           </div>
         </div>
 
-        {/* Individual Packages */}
-        <div className="mb-12 sm:mb-16">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6 sm:mb-8 px-2">
-            International Packages
+        {/* Single Package */}
+        <div className="max-w-md mx-auto mb-12">
+          <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">
+            International Package
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
-            {individualPackages.map((pkg, index) => (
-              <Card key={index} className={`relative group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:scale-105 ${pkg.popular ? 'ring-2 ring-amber-500' : ''}`}>
-                {pkg.popular && (
-                  <Badge className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-3 py-1 text-xs sm:text-sm">
-                    Most Popular
-                  </Badge>
-                )}
-                <CardHeader className="text-center pb-3 sm:pb-4 p-4 sm:p-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
-                    <pkg.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
+          <Card className="relative hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:scale-105 ring-2 ring-amber-500">
+            <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-4 py-1 text-sm font-bold">
+              Most Popular
+            </Badge>
+            <CardHeader className="text-center pb-4 pt-6 px-6">
+              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mb-4">
+                <singlePackage.icon className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-xl font-bold text-gray-900 mb-2">
+                {singlePackage.title}
+              </CardTitle>
+              <div className="text-3xl font-bold text-amber-600">
+                {singlePackage.price}
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4 px-6 pb-6">
+              <div className="space-y-3">
+                {singlePackage.features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <span className="text-base text-gray-600">{feature}</span>
                   </div>
-                  <CardTitle className="text-lg sm:text-xl font-bold text-gray-900">
-                    {pkg.title}
-                  </CardTitle>
-                  <div className="text-2xl sm:text-3xl font-bold text-amber-600 mt-2">
-                    {pkg.price}
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6">
-                  <div className="space-y-2 sm:space-y-3">
-                    {pkg.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center gap-2 sm:gap-3">
-                        <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" />
-                        <span className="text-sm sm:text-base text-gray-600">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Button 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white mt-4 sm:mt-6 text-sm sm:text-base"
-                    onClick={handlePaymentClick}
-                  >
-                    Select Package
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                ))}
+              </div>
+              <Button 
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 text-base font-semibold transition-all transform hover:scale-105"
+                onClick={handlePaymentClick}
+              >
+                Book Single Package
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Group Package */}
-        <div className="max-w-4xl mx-auto">
+        {/* VIP Group Package */}
+        <div className="max-w-4xl mx-auto mb-12">
           <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
-            Group Package
+            VIP Group Package
           </h3>
           <Card className="bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-2xl border-0">
             <CardContent className="p-8 md:p-12">
               <div className="text-center space-y-6">
                 <div className="space-y-4">
                   <Badge className="bg-white/20 text-white px-4 py-2 text-lg font-semibold">
-                    Best Value for Teams
+                    VIP Group Deal
                   </Badge>
                   <h4 className="text-3xl md:text-4xl font-bold">
                     Group of 5
@@ -224,7 +191,7 @@ const Pricing = () => {
                     className="bg-white text-orange-600 hover:bg-gray-100 px-12 py-4 text-xl font-bold transition-all transform hover:scale-105"
                     onClick={handlePaymentClick}
                   >
-                    Book Group Package
+                    Book VIP Group Package
                     <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
                   <p className="text-amber-200">
