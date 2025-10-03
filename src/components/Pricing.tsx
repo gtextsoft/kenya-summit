@@ -252,7 +252,7 @@ const Pricing = () => {
                     With Accommodation
                   </h4>
                   <div className="text-4xl md:text-5xl font-bold">
-                    ₦1,500
+                    KSh 1,500
                   </div>
                   <p className="text-lg text-blue-100">
                     Includes accommodation and training
@@ -293,7 +293,7 @@ const Pricing = () => {
                     Without Accommodation
                   </h4>
                   <div className="text-4xl md:text-5xl font-bold">
-                    ₦1,000
+                    KSh 1,000
                   </div>
                   <p className="text-lg text-purple-100">
                     Training cost only
