@@ -9,7 +9,7 @@ import { toast } from "@/components/ui/use-toast";
 const individualPackages = [
   {
     title: "Premium Studio",
-    price: "₦5,500,000",
+    price: "₦3,500,000",
     accommodation: "Studio apartment accommodation",
     icon: Building2,
     popular: false,
@@ -21,7 +21,7 @@ const individualPackages = [
   },
   {
     title: "Single Comfort",
-    price: "₦4,500,000", 
+    price: "₦3,500,000", 
     accommodation: "Single accommodation",
     icon: Home,
     popular: true,
@@ -33,7 +33,7 @@ const individualPackages = [
   },
   {
     title: "Shared Value",
-    price: "₦4,000,000",
+    price: "₦3,500,000",
     accommodation: "Shared apartment (2) accommodation", 
     icon: Users,
     popular: false,
@@ -123,10 +123,18 @@ const Pricing = () => {
           </div>
         </div> */}
 
+        {/* Special Discount Notice */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-6 text-center text-white">
+            <h3 className="text-2xl md:text-3xl font-bold mb-2">🎉 Special Discount Price!</h3>
+            <p className="text-lg text-green-100">All individual packages now at ₦3,500,000 - Limited time offer!</p>
+          </div>
+        </div>
+
         {/* Individual Packages */}
         <div className="mb-12 sm:mb-16">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6 sm:mb-8 px-2">
-            Economy Class for Individuals
+            International Packages
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
             {individualPackages.map((pkg, index) => (
@@ -185,8 +193,11 @@ const Pricing = () => {
                     Group of 5
                   </h4>
                   <div className="text-5xl md:text-6xl font-bold">
-                    ₦19,000,000
+                    ₦15,000,000
                   </div>
+                  <p className="text-lg text-amber-100">
+                    (₦3,000,000 per person)
+                  </p>
                   <p className="text-xl text-amber-100">
                     Perfect for leadership teams and small organizations
                   </p>
@@ -223,6 +234,96 @@ const Pricing = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Kenya Local Pricing */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
+            For Kenyans in Kenya
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-2xl border-0">
+              <CardContent className="p-8">
+                <div className="text-center space-y-4">
+                  <Badge className="bg-white/20 text-white px-4 py-2 text-lg font-semibold">
+                    Full Package
+                  </Badge>
+                  <h4 className="text-2xl md:text-3xl font-bold">
+                    With Accommodation
+                  </h4>
+                  <div className="text-4xl md:text-5xl font-bold">
+                    ₦1,500
+                  </div>
+                  <p className="text-lg text-blue-100">
+                    Includes accommodation and training
+                  </p>
+                  <div className="space-y-3 my-6">
+                    <div className="flex items-center gap-3 justify-center">
+                      <CheckCircle className="h-5 w-5 text-blue-200 flex-shrink-0" />
+                      <span className="text-base">Event & Tour Access</span>
+                    </div>
+                    <div className="flex items-center gap-3 justify-center">
+                      <CheckCircle className="h-5 w-5 text-blue-200 flex-shrink-0" />
+                      <span className="text-base">Accommodation Included</span>
+                    </div>
+                    <div className="flex items-center gap-3 justify-center">
+                      <CheckCircle className="h-5 w-5 text-blue-200 flex-shrink-0" />
+                      <span className="text-base">Full Training Program</span>
+                    </div>
+                  </div>
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-bold transition-all transform hover:scale-105"
+                    onClick={handlePaymentClick}
+                  >
+                    Book Full Package
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-2xl border-0">
+              <CardContent className="p-8">
+                <div className="text-center space-y-4">
+                  <Badge className="bg-white/20 text-white px-4 py-2 text-lg font-semibold">
+                    Training Only
+                  </Badge>
+                  <h4 className="text-2xl md:text-3xl font-bold">
+                    Without Accommodation
+                  </h4>
+                  <div className="text-4xl md:text-5xl font-bold">
+                    ₦1,000
+                  </div>
+                  <p className="text-lg text-purple-100">
+                    Training cost only
+                  </p>
+                  <div className="space-y-3 my-6">
+                    <div className="flex items-center gap-3 justify-center">
+                      <CheckCircle className="h-5 w-5 text-purple-200 flex-shrink-0" />
+                      <span className="text-base">Event & Tour Access</span>
+                    </div>
+                    <div className="flex items-center gap-3 justify-center">
+                      <CheckCircle className="h-5 w-5 text-purple-200 flex-shrink-0" />
+                      <span className="text-base">Full Training Program</span>
+                    </div>
+                    <div className="flex items-center gap-3 justify-center">
+                      <CheckCircle className="h-5 w-5 text-purple-200 flex-shrink-0" />
+                      <span className="text-base">Meals During Events</span>
+                    </div>
+                  </div>
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 text-lg font-bold transition-all transform hover:scale-105"
+                    onClick={handlePaymentClick}
+                  >
+                    Book Training Only
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         <div className="mt-16 text-center">
