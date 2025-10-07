@@ -2,24 +2,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Timer } from "lucide-react";
+import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Timer, Crown, Globe } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
-const singlePackage = {
-  title: "Single Package",
-  price: "₦3,500,000",
-  icon: Home,
-  popular: true,
-  features: [
-    "Visa and Ticket",
-    "Event & Tour",
-    "Accommodation"
-  ]
-};
 
 const Pricing = () => {
   const [isCopied, setIsCopied] = useState(false);
+  const [billingFrequency, setBillingFrequency] = useState<'single' | 'group'>('single');
   const couponCode = "SAVE50";
 
   const handlePaymentClick = () => {
@@ -45,260 +35,240 @@ const Pricing = () => {
     }
   };
 
+  const packages = {
+    single: [
+      {
+        title: "Local Package",
+        price: "KSh 1,000",
+        billing: "Training only, no accommodation",
+        description: "For Kenyans in Kenya",
+        icon: Home,
+        features: [
+          "Event & Tour Access",
+          "Full Training Program",
+          "Meals During Events"
+        ],
+        buttonText: "Get started",
+        popular: false
+      },
+      {
+        title: "International Package",
+        price: "₦3,500,000",
+        billing: "Single person, all inclusive",
+        description: "Perfect for individuals",
+        icon: Globe,
+        features: [
+          "Visa and Ticket",
+          "Event & Tour",
+          "Accommodation",
+          "Full Training Program"
+        ],
+        buttonText: "Reserve Your Spot",
+        popular: true
+      },
+      {
+        title: "Local Full Package",
+        price: "KSh 1,500",
+        billing: "With accommodation included",
+        description: "Complete local experience",
+        icon: Building2,
+        features: [
+          "Event & Tour Access",
+          "Accommodation Included",
+          "Full Training Program",
+          "All Meals Covered"
+        ],
+        buttonText: "Get started",
+        popular: false
+      }
+    ],
+    group: [
+      {
+        title: "VIP Group Package",
+        price: "₦15,000,000",
+        billing: "Group of 5 people",
+        description: "Perfect for leadership teams",
+        icon: Users,
+        features: [
+          "Visa and Ticket for 5",
+          "Event & Tour Access",
+          "Shared Apartment",
+          "Team Building Activities"
+        ],
+        buttonText: "Book VIP Group",
+        popular: true
+      },
+      {
+        title: "Corporate Package",
+        price: "Custom",
+        billing: "Tailored for your organization",
+        description: "For multiple teams",
+        icon: Crown,
+        features: [
+          "Everything in VIP Package",
+          "Up to 20 team members",
+          "Custom accommodation",
+          "Dedicated support",
+          "Branding opportunities"
+        ],
+        buttonText: "Contact Sales",
+        popular: false
+      }
+    ]
+  };
+
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-white to-amber-50">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <section id="investment-options" className="py-16 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Investment Options
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Choose the package that best fits your needs. All packages include visa processing, 
             tickets, full event access, and guided tours of Kenya's most iconic destinations.
           </p>
+          
+          {/* Billing Toggle */}
+          <div className="flex items-center justify-center mb-8">
+            <div className="bg-gray-100 p-1 rounded-lg flex">
+              <button
+                onClick={() => setBillingFrequency('single')}
+                className={`px-6 py-3 rounded-md font-medium transition-all ${
+                  billingFrequency === 'single'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Individual
+              </button>
+              <button
+                onClick={() => setBillingFrequency('group')}
+                className={`px-6 py-3 rounded-md font-medium transition-all relative ${
+                  billingFrequency === 'group'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Group & Corporate
+                {billingFrequency === 'group' && (
+                  <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
+                    Save 25%
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Special Offer Section */}
-        {/* <div className="max-w-4xl mx-auto mb-16 transform hover:scale-105 transition-transform duration-300">
-          <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 p-1 rounded-2xl animate-pulse">
-            <div className="bg-white rounded-xl p-6 md:p-8">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="flex items-center gap-4">
-                  <Sparkles className="h-8 w-8 text-amber-500 animate-bounce" />
-                  <div className="text-left">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
-                      🔥 Flash Sale!
-                    </h3>
-                    <div className="mt-2 space-y-1">
-                      <p className="text-lg md:text-xl text-gray-700 flex items-center gap-2">
-                        <span className="line-through text-gray-400">Original Price</span>
-                        <span className="bg-red-100 text-red-600 px-2 py-1 rounded-full text-sm font-semibold">-50% OFF</span>
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        Discount automatically applied at checkout
-                      </p>
-                    </div>
-                  </div>
+        {/* Pricing Cards */}
+        <div className={`grid gap-8 mb-16 ${
+          billingFrequency === 'single' 
+            ? 'md:grid-cols-2 lg:grid-cols-3' 
+            : 'md:grid-cols-2 max-w-4xl mx-auto'
+        }`}>
+          {packages[billingFrequency].map((pkg, index) => (
+            <Card 
+              key={index} 
+              className={`relative border-2 transition-all duration-300 hover:shadow-xl ${
+                pkg.popular 
+                  ? 'border-orange-500 shadow-lg scale-105' 
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              {pkg.popular && (
+                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-4 py-1 text-sm font-bold">
+                  Popular
+                </Badge>
+              )}
+              
+              <CardHeader className="text-center pb-4 pt-8 px-6">
+                <div className={`w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-4 ${
+                  pkg.popular ? 'bg-orange-500' : 'bg-gray-100'
+                }`}>
+                  <pkg.icon className={`h-6 w-6 ${
+                    pkg.popular ? 'text-white' : 'text-gray-600'
+                  }`} />
                 </div>
-                <div className="text-center md:text-right flex items-center gap-3">
-                  <Timer className="h-5 w-5 text-amber-600 animate-pulse" />
-                  <div>
-                    <div className="text-2xl md:text-3xl font-bold text-amber-600">
-                      Limited Time Only
+                
+                <CardTitle className="text-xl font-bold text-gray-900 mb-2">
+                  {pkg.title}
+                </CardTitle>
+                
+                <div className="text-4xl font-bold text-gray-900 mb-2">
+                  {pkg.price}
+                </div>
+                
+                <p className="text-sm text-gray-500 mb-4">
+                  {pkg.billing}
+                </p>
+                
+                <p className="text-gray-600">
+                  {pkg.description}
+                </p>
+              </CardHeader>
+              
+              <CardContent className="px-6 pb-6">
+                <div className="space-y-3 mb-8">
+                  {pkg.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-600">{feature}</span>
                     </div>
-                    <p className="text-gray-600 mt-1">
-                      Book now before prices increase!
-                    </p>
-                  </div>
+                  ))}
+                </div>
+                
+                <Button 
+                  className={`w-full py-3 font-semibold transition-all ${
+                    pkg.popular
+                      ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                      : 'bg-gray-900 hover:bg-gray-800 text-white border border-gray-300'
+                  }`}
+                  onClick={handlePaymentClick}
+                >
+                  {pkg.buttonText}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Footer Info */}
+        <div className="text-center">
+          <div className="bg-gray-50 rounded-2xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              What's Included in Every Package
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Complete visa processing</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Round-trip tickets</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Full retreat program access</span>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Guided Kenya tours</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Meals during events</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span className="text-gray-700">Accommodation as specified</span>
                 </div>
               </div>
             </div>
-          </div>
-        </div> */}
-
-        {/* Special Discount Notice */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-6 text-center text-white">
-            <h3 className="text-2xl font-bold mb-2">🎉 Special Discount Price!</h3>
-            <p className="text-lg text-green-100">Single package now at ₦3,500,000 - Limited time offer!</p>
-          </div>
-        </div>
-
-        {/* Single Package */}
-        <div className="max-w-md mx-auto mb-12">
-          <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">
-            International Package
-          </h3>
-          <Card className="relative hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:scale-105 ring-2 ring-amber-500">
-            <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-4 py-1 text-sm font-bold">
-              Most Popular
-            </Badge>
-            <CardHeader className="text-center pb-4 pt-6 px-6">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mb-4">
-                <singlePackage.icon className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-xl font-bold text-gray-900 mb-2">
-                {singlePackage.title}
-              </CardTitle>
-              <div className="text-3xl font-bold text-amber-600">
-                {singlePackage.price}
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4 px-6 pb-6">
-              <div className="space-y-3">
-                {singlePackage.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                    <span className="text-base text-gray-600">{feature}</span>
-                  </div>
-                ))}
-              </div>
-              <Button 
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 text-base font-semibold transition-all transform hover:scale-105"
-                onClick={handlePaymentClick}
-              >
-                Book Single Package
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* VIP Group Package */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
-            VIP Group Package
-          </h3>
-          <Card className="bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-2xl border-0">
-            <CardContent className="p-8 md:p-12">
-              <div className="text-center space-y-6">
-                <div className="space-y-4">
-                  <Badge className="bg-white/20 text-white px-4 py-2 text-lg font-semibold">
-                    VIP Group Deal
-                  </Badge>
-                  <h4 className="text-3xl md:text-4xl font-bold">
-                    Group of 5
-                  </h4>
-                  <div className="text-5xl md:text-6xl font-bold">
-                    ₦15,000,000
-                  </div>
-                  <p className="text-lg text-amber-100">
-                    (₦3,000,000 per person)
-                  </p>
-                  <p className="text-xl text-amber-100">
-                    Perfect for leadership teams and small organizations
-                  </p>
-                </div>
-                
-                <div className="grid md:grid-cols-3 gap-6 my-8">
-                  <div className="flex items-center gap-3 justify-center md:justify-start">
-                    <CheckCircle className="h-6 w-6 text-amber-200 flex-shrink-0" />
-                    <span className="text-lg">Visa & Ticket</span>
-                  </div>
-                  <div className="flex items-center gap-3 justify-center md:justify-start">
-                    <CheckCircle className="h-6 w-6 text-amber-200 flex-shrink-0" />
-                    <span className="text-lg">Event & Tour</span>
-                  </div>
-                  <div className="flex items-center gap-3 justify-center md:justify-start">
-                    <CheckCircle className="h-6 w-6 text-amber-200 flex-shrink-0" />
-                    <span className="text-lg">Shared room apartment</span>
-                  </div>
-                </div>
-                
-                <div className="space-y-4">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-orange-600 hover:bg-gray-100 px-12 py-4 text-xl font-bold transition-all transform hover:scale-105"
-                    onClick={handlePaymentClick}
-                  >
-                    Book VIP Group Package
-                    <ArrowRight className="ml-3 h-6 w-6" />
-                  </Button>
-                  <p className="text-amber-200">
-                    Save significantly when you bring your team together
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Kenya Local Pricing */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
-            For Kenyans in Kenya
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-2xl border-0">
-              <CardContent className="p-8">
-                <div className="text-center space-y-4">
-                  <Badge className="bg-white/20 text-white px-4 py-2 text-lg font-semibold">
-                    Full Package
-                  </Badge>
-                  <h4 className="text-2xl md:text-3xl font-bold">
-                    With Accommodation
-                  </h4>
-                  <div className="text-4xl md:text-5xl font-bold">
-                    KSh 1,500
-                  </div>
-                  <p className="text-lg text-blue-100">
-                    Includes accommodation and training
-                  </p>
-                  <div className="space-y-3 my-6">
-                    <div className="flex items-center gap-3 justify-center">
-                      <CheckCircle className="h-5 w-5 text-blue-200 flex-shrink-0" />
-                      <span className="text-base">Event & Tour Access</span>
-                    </div>
-                    <div className="flex items-center gap-3 justify-center">
-                      <CheckCircle className="h-5 w-5 text-blue-200 flex-shrink-0" />
-                      <span className="text-base">Accommodation Included</span>
-                    </div>
-                    <div className="flex items-center gap-3 justify-center">
-                      <CheckCircle className="h-5 w-5 text-blue-200 flex-shrink-0" />
-                      <span className="text-base">Full Training Program</span>
-                    </div>
-                  </div>
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-bold transition-all transform hover:scale-105"
-                    onClick={handlePaymentClick}
-                  >
-                    Book Full Package
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-2xl border-0">
-              <CardContent className="p-8">
-                <div className="text-center space-y-4">
-                  <Badge className="bg-white/20 text-white px-4 py-2 text-lg font-semibold">
-                    Training Only
-                  </Badge>
-                  <h4 className="text-2xl md:text-3xl font-bold">
-                    Without Accommodation
-                  </h4>
-                  <div className="text-4xl md:text-5xl font-bold">
-                    KSh 1,000
-                  </div>
-                  <p className="text-lg text-purple-100">
-                    Training cost only
-                  </p>
-                  <div className="space-y-3 my-6">
-                    <div className="flex items-center gap-3 justify-center">
-                      <CheckCircle className="h-5 w-5 text-purple-200 flex-shrink-0" />
-                      <span className="text-base">Event & Tour Access</span>
-                    </div>
-                    <div className="flex items-center gap-3 justify-center">
-                      <CheckCircle className="h-5 w-5 text-purple-200 flex-shrink-0" />
-                      <span className="text-base">Full Training Program</span>
-                    </div>
-                    <div className="flex items-center gap-3 justify-center">
-                      <CheckCircle className="h-5 w-5 text-purple-200 flex-shrink-0" />
-                      <span className="text-base">Meals During Events</span>
-                    </div>
-                  </div>
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 text-lg font-bold transition-all transform hover:scale-105"
-                    onClick={handlePaymentClick}
-                  >
-                    Book Training Only
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        <div className="mt-16 text-center">
-          <div className="bg-gray-50 rounded-2xl p-8 max-w-3xl mx-auto">
-            <p className="text-lg text-gray-700 mb-4">
-              <strong>All packages include:</strong> Complete visa processing, round-trip tickets, 
-              full retreat program access, guided Kenya tours, meals during events, and accommodation as specified.
-            </p>
             <p className="text-gray-600">
               Payment plans available. Contact us for corporate group discounts and custom arrangements.
             </p>

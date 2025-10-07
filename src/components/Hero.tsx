@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 
 const Hero = () => {
+  const scrollToInvestmentOptions = () => {
+    const element = document.getElementById('investment-options');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
@@ -65,6 +72,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-amber-600 hover:bg-amber-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold transition-all transform hover:scale-105 w-full sm:w-auto"
+              onClick={scrollToInvestmentOptions}
             >
               Reserve Your Spot
               <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
