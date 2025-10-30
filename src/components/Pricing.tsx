@@ -53,7 +53,7 @@ const Pricing = () => {
       },
       {
         title: "International Package",
-        price: "₦3,500,000",
+        price: "₦4,000,000",
         billing: "Single person, all inclusive",
         description: "Perfect for individuals",
         icon: Globe,
