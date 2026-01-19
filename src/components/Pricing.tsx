@@ -2,120 +2,33 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Home, Users, Building2, ArrowRight, Sparkles, Timer, Crown, Globe } from "lucide-react";
-import { useState } from "react";
-import { toast } from "@/components/ui/use-toast";
+import { CheckCircle, Globe } from "lucide-react";
 
 
 const Pricing = () => {
-  const [isCopied, setIsCopied] = useState(false);
-  const [billingFrequency, setBillingFrequency] = useState<'single' | 'group'>('single');
-  const couponCode = "SAVE50";
-
   const handlePaymentClick = () => {
     window.open('https://app.mailingboss.com/lists/685bc4caa031e/subscribe', '_blank');
   };
 
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(couponCode);
-      setIsCopied(true);
-      toast({
-        title: "Copied!",
-        description: `Coupon code ${couponCode} copied to clipboard`,
-        duration: 2000,
-      });
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      toast({
-        title: "Failed to copy",
-        description: "Please try copying the code manually",
-        variant: "destructive",
-      });
+  const packages = [
+    {
+      title: "Corporate Leadership Retreat, Kenya",
+      price: "$6,000",
+      billing: "All expenses included",
+      description: "20th-26th of April, 2026",
+      icon: Globe,
+      features: [
+        "Visa processing",
+        "Flight ticket",
+        "Accommodation",
+        "Tourism & sightseeing",
+        "Full Training Program",
+        "All meals included"
+      ],
+      buttonText: "Reserve Your Spot",
+      popular: true
     }
-  };
-
-  const packages = {
-    single: [
-      {
-        title: "Local Package",
-        price: "KSh 1,000",
-        billing: "Training only, no accommodation",
-        description: "For Kenyans in Kenya",
-        icon: Home,
-        features: [
-          "Event & Tour Access",
-          "Full Training Program",
-          "Meals During Events"
-        ],
-        buttonText: "Get started",
-        popular: false
-      },
-      {
-        title: "International Package",
-        price: "₦4,000,000",
-        billing: "Single person, all inclusive",
-        description: "Perfect for individuals",
-        icon: Globe,
-        features: [
-          "Visa and Ticket",
-          "Event & Tour",
-          "Accommodation",
-          "Full Training Program"
-        ],
-        buttonText: "Reserve Your Spot",
-        popular: true
-      },
-      {
-        title: "Local Full Package",
-        price: "KSh 1,500",
-        billing: "With accommodation included",
-        description: "Complete local experience",
-        icon: Building2,
-        features: [
-          "Event & Tour Access",
-          "Accommodation Included",
-          "Full Training Program",
-          "All Meals Covered"
-        ],
-        buttonText: "Get started",
-        popular: false
-      }
-    ],
-    group: [
-      {
-        title: "VIP Group Package",
-        price: "₦15,000,000",
-        billing: "Group of 5 people",
-        description: "Perfect for leadership teams",
-        icon: Users,
-        features: [
-          "Visa and Ticket for 5",
-          "Event & Tour Access",
-          "Shared Apartment",
-          "Team Building Activities"
-        ],
-        buttonText: "Book VIP Group",
-        popular: true
-      },
-      {
-        title: "Corporate Package",
-        price: "Custom",
-        billing: "Tailored for your organization",
-        description: "For multiple teams",
-        icon: Crown,
-        features: [
-          "Everything in VIP Package",
-          "Up to 20 team members",
-          "Custom accommodation",
-          "Dedicated support",
-          "Branding opportunities"
-        ],
-        buttonText: "Contact Sales",
-        popular: false
-      }
-    ]
-  };
+  ];
 
   return (
     <section id="investment-options" className="py-16 bg-white">
@@ -125,49 +38,15 @@ const Pricing = () => {
             Investment Options
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Choose the package that best fits your needs. All packages include visa processing, 
-            tickets, full event access, and guided tours of Kenya's most iconic destinations.
+            Corporate Leadership Retreat, Kenya - 20th-26th of April, 2026. 
+            All-inclusive package covering visa, flight ticket, accommodation, and tourism.
           </p>
           
-          {/* Billing Toggle */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-gray-100 p-1 rounded-lg flex">
-              <button
-                onClick={() => setBillingFrequency('single')}
-                className={`px-6 py-3 rounded-md font-medium transition-all ${
-                  billingFrequency === 'single'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Individual
-              </button>
-              <button
-                onClick={() => setBillingFrequency('group')}
-                className={`px-6 py-3 rounded-md font-medium transition-all relative ${
-                  billingFrequency === 'group'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Group & Corporate
-                {billingFrequency === 'group' && (
-                  <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
-                    Save 25%
-                  </span>
-                )}
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className={`grid gap-8 mb-16 ${
-          billingFrequency === 'single' 
-            ? 'md:grid-cols-2 lg:grid-cols-3' 
-            : 'md:grid-cols-2 max-w-4xl mx-auto'
-        }`}>
-          {packages[billingFrequency].map((pkg, index) => (
+        <div className="grid gap-8 mb-16 md:grid-cols-1 max-w-2xl mx-auto">
+          {packages.map((pkg, index) => (
             <Card 
               key={index} 
               className={`relative border-2 transition-all duration-300 hover:shadow-xl ${
@@ -237,17 +116,17 @@ const Pricing = () => {
         <div className="text-center">
           <div className="bg-gray-50 rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              What's Included in Every Package
+              What's Included in Your Package
             </h3>
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Complete visa processing</span>
+                  <span className="text-gray-700">Visa processing</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Round-trip tickets</span>
+                  <span className="text-gray-700">Flight ticket</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500" />
@@ -257,20 +136,20 @@ const Pricing = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Guided Kenya tours</span>
+                  <span className="text-gray-700">Accommodation</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Meals during events</span>
+                  <span className="text-gray-700">Tourism & sightseeing</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-700">Accommodation as specified</span>
+                  <span className="text-gray-700">All meals included</span>
                 </div>
               </div>
             </div>
             <p className="text-gray-600">
-              Payment plans available. Contact us for corporate group discounts and custom arrangements.
+              All expenses covered. Payment plans available. Contact us for corporate group discounts.
             </p>
           </div>
         </div>
